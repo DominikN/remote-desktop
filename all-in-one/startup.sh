@@ -1,8 +1,11 @@
 #!/bin/bash
 set -uo pipefail
 
-nohup x11vnc -rfbport 5901 -display ${DISPLAY} -loop >/dev/null 2>&1 &
-nohup /usr/share/novnc/utils/launch.sh --listen 8080 --vnc localhost:5901 >/dev/null 2>&1 &
+VNC_SERVER_PORT=5901
+NOVNC_PORT=8080
+
+nohup x11vnc -rfbport ${VNC_SERVER_PORT} -display ${DISPLAY} -loop >/dev/null 2>&1 &
+nohup /usr/share/novnc/utils/launch.sh --listen ${NOVNC_PORT} --vnc localhost:${VNC_SERVER_PORT} >/dev/null 2>&1 &
 # service start nginx
 
 
