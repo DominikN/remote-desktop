@@ -27,5 +27,8 @@ COPY startup.sh /
 
 ENV JOINCODE remote-desktop
 ENV HOSTNAME PLACE_YOU_OWN
+# ENV PASSWORD qwerty
+
+EXPOSE 9090
 
 CMD [ "/startup.sh" ]

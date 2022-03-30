@@ -4,6 +4,7 @@ set -uo pipefail
 VNC_SERVER_PORT=5901
 NOVNC_PORT=8080
 
+# nohup x11vnc -passwd "qwerty123" -rfbport ${VNC_SERVER_PORT} -display ${DISPLAY} -loop >/dev/null 2>&1 &
 nohup x11vnc -rfbport ${VNC_SERVER_PORT} -display ${DISPLAY} -loop >/dev/null 2>&1 &
 nohup /usr/share/novnc/utils/launch.sh --listen ${NOVNC_PORT} --vnc localhost:${VNC_SERVER_PORT} >/dev/null 2>&1 &
 # service start nginx
