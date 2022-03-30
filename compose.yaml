@@ -1,0 +1,19 @@
+services:
+  vnc-server:
+    build:
+      context: .
+      dockerfile: vnc-server.Dockerfile
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    ipc: host
+    # ports:
+    #   - 5900:5900
+    command: x11vnc -display :1
+
+  no-vnc-client:
+    build:
+      context: .
+      dockerfile: no-vnc.Dockerfile
+    ports:
+      - 8080:8080
+    command: /usr/share/novnc/utils/launch.sh --listen 8080 --vnc vnc-server:5900
