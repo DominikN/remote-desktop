@@ -1,7 +1,7 @@
 #!/bin/bash
 set -uo pipefail
 
-nohup x11vnc -rfbport 5901 -display :1 -loop >/dev/null 2>&1 &
+nohup x11vnc -rfbport 5901 -display ${DISPLAY} -loop >/dev/null 2>&1 &
 nohup /usr/share/novnc/utils/launch.sh --listen 8080 --vnc localhost:5901 >/dev/null 2>&1 &
 # service start nginx
 /usr/sbin/nginx -g 'daemon off;' >/dev/null 2>&1 &
