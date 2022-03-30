@@ -4,7 +4,15 @@ set -uo pipefail
 nohup x11vnc -rfbport 5901 -display ${DISPLAY} -loop >/dev/null 2>&1 &
 nohup /usr/share/novnc/utils/launch.sh --listen 8080 --vnc localhost:5901 >/dev/null 2>&1 &
 # service start nginx
-/usr/sbin/nginx -g 'daemon off;' >/dev/null 2>&1 &
+
+
+if [ $(ip addr show | grep 'hnet0' | wc -l) -gt 0 ]; then
+    echo "Using hnet0 network interface from the host OS"
+    /usr/sbin/nginx -g 'daemon off;'
+else
+    /usr/sbin/nginx -g 'daemon off;' >/dev/null 2>&1 &
+    echo "No hnet0 net interface detected. Connecting husarnet..."
+fi
 
 catch() {
   if [ "$1" != "0" ]; then
