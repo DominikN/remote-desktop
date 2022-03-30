@@ -2,18 +2,39 @@ services:
   vnc-server:
     build:
       context: .
-      dockerfile: vnc-server.Dockerfile
+      dockerfile: Dockerfile.vnc-server
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
     ipc: host
     # ports:
-    #   - 5900:5900
-    command: x11vnc -display :1
+    #   - 5900:5901
+    command: x11vnc -rfbport 5901 -display :1 -loop
 
   no-vnc-client:
     build:
       context: .
-      dockerfile: no-vnc.Dockerfile
+      dockerfile: Dockerfile.no-vnc
     ports:
       - 8080:8080
-    command: /usr/share/novnc/utils/launch.sh --listen 8080 --vnc vnc-server:5900
+    command: /usr/share/novnc/utils/launch.sh --listen 8080 --vnc vnc-server:5901
+
+  webserver:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    network_mode: service:husarnet
+
+  husarnet:
+    image: husarnet/husarnet
+    restart: unless-stopped
+    volumes:
+      - /var/lib/husarnet
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0 
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    environment:
+      - HOSTNAME=my-desktop
+      - JOINCODE=${HUSARNET_JOINCODE}
