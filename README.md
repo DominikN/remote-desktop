@@ -1,6 +1,11 @@
 # remote-desktop
 Trying to run VNC Server + NoVNC with a host OS
 
+If you want to start the remote desktop on remote host throgh SSH, remember abotu `-X` flag:
+
+```bash
+ssh husarion@10.5.10.32 -X
+```
 
 ## Quick start
 
