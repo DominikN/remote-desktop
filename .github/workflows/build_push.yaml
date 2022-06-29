@@ -45,6 +45,6 @@ jobs:
         file: ${{ matrix.dockerfile }}
         platforms: linux/amd64, linux/arm64
         push: true
-        tags: dominikn/remote-desktop:${{ matrix.docker-tag }}
-        cache-from: type=registry,ref=dominikn/remote-desktop:${{ matrix.docker-tag }} 
+        tags: donowak/remote-desktop:${{ matrix.docker-tag }}
+        cache-from: type=registry,ref=donowak/remote-desktop:${{ matrix.docker-tag }} 
         cache-to: type=inline
