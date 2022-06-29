@@ -12,8 +12,8 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /var/lib/husarnet
     environment:
-      - DISPLAY=${DISPLAY}
+      - DISPLAY
+      - JOINCODE
       - HOSTNAME=my-desktop
-      - JOINCODE=${HUSARNET_JOINCODE}
     # ports:
     #   - 9090:9090 # http://ip6-localhost:9090 or http://localhost:9090 or http://my-desktop:9090

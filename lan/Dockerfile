@@ -4,9 +4,17 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y && apt-get install -y \
         net-tools \
-        novnc  && \
+        novnc  \
+        x11vnc && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# CMD /usr/share/novnc/utils/launch.sh --listen 8080 --vnc vnc-server:5900
+COPY startup.sh /
+
+ENV VNC_SERVER_PORT=5901
+ENV NOVNC_PORT=8080
+
+EXPOSE ${NOVNC_PORT}
+
+CMD [ "/startup.sh" ]

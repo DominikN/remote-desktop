@@ -37,4 +37,4 @@ services:
       - /dev/net/tun
     environment:
       - HOSTNAME=my-desktop
-      - JOINCODE=${HUSARNET_JOINCODE}
+      - JOINCODE
