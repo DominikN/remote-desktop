@@ -5,12 +5,11 @@ on:
     branches:
       - 'main'
   workflow_dispatch:
-  
+
 jobs:
-  build:
+  build_and_push:
     runs-on: ubuntu-20.04
     strategy:
-      fail-fast: false
       matrix:
         include:
           - dockerfile: vpn/Dockerfile
