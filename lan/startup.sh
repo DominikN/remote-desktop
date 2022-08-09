@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir /.vnc
+mkdir /root/.vnc
 x11vnc -storepasswd ${VNC_PASSWORD} /root/.vnc/passwd
 
 # nohup x11vnc -passwd "qwerty123" -rfbport ${VNC_SERVER_PORT} -display ${DISPLAY} -loop >/dev/null 2>&1 &
