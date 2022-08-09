@@ -24,7 +24,7 @@ or `http://my-desktop:9090/vnc_auto.html` if you want over the internet access (
 ### With Husarnet running inside the container
 
 ```bash
-cd all-in-one
+cd lan
 
 xhost local:root
 docker compose up
@@ -35,7 +35,7 @@ And visit: `http://my-desktop:9090/vnc_auto.html`
 ### With Husarnet running on the host OS
 
 ```bash
-cd all-in-one
+cd vpn
 
 xhost local:root
 docker compose -f compose.net_host.yaml up

@@ -1,21 +1,16 @@
+# Quick Start
+# $ xhost local:root
+# $ docker compose -f compose.lan.yaml up -d
+# 
+# Go to: http://localhost:8080/vnc_auto.html
+
 services:
-  vnc-server:
-    build:
-      context: .
-      dockerfile: Dockerfile.vnc-server
+  remote-desktop:
+    image: donowak/remote-desktop:lan
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
     ipc: host
-    environment:
-      - DISPLAY
-    # ports:
-    #   - 5900:5901
-    command: x11vnc -rfbport 5901 -display $DISPLAY -loop
-
-  no-vnc-client:
-    build:
-      context: .
-      dockerfile: Dockerfile.no-vnc
     ports:
       - 8080:8080
-    command: /usr/share/novnc/utils/launch.sh --listen 8080 --vnc vnc-server:5901
+    environment:
+      - DISPLAY
