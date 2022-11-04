@@ -8,8 +8,6 @@ services:
     ipc: host
     environment:
       - DISPLAY
-    # ports:
-    #   - 5900:5901
     command: x11vnc -rfbport 5901 -display $DISPLAY -loop
 
   no-vnc-client:

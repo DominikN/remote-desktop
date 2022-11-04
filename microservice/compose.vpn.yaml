@@ -6,8 +6,6 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
     ipc: host
-    # ports:
-    #   - 5900:5901
     command: x11vnc -rfbport 5901 -display :1 -loop
 
   no-vnc-client:
@@ -25,7 +23,7 @@ services:
     network_mode: service:husarnet
 
   husarnet:
-    image: husarnet/husarnet
+    image: husarnet/husarnet:2.0.0
     restart: unless-stopped
     volumes:
       - /var/lib/husarnet
@@ -38,3 +36,4 @@ services:
     environment:
       - HOSTNAME=my-desktop
       - JOINCODE
+      - HUSARNET_DEBUG=1
