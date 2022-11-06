@@ -7,18 +7,18 @@ RUN apt-get update -y && apt-get install -y \
         novnc  \
         x11vnc \
         nginx \
-        iputils-ping && \
+        iputils-ping \
+        gettext-base && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 COPY startup.sh /
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf.template /
 
-ENV VNC_SERVER_PORT=5901
-ENV NOVNC_PORT=8081
-ENV VNC_PASSWORD=qwerty
+ENV PASSWORD=qwerty
+ENV PORT=8080
 
-EXPOSE ${NOVNC_PORT}
+EXPOSE ${PORT}
 
 CMD [ "/startup.sh" ]

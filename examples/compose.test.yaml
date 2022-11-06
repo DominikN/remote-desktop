@@ -1,6 +1,6 @@
 # Quick Start
 # $ xhost +
-# $ docker compose up -d
+# $ docker compose -f compose.test.yaml up -d
 # 
 # Go to: http://YOUR_HUSARNET_HOSTNAME:8080/vnc_auto.html
 # or
@@ -8,7 +8,9 @@
 
 services:
   remote-desktop:
-    image: donowak/remote-desktop
+    build:
+      context: ../
+      dockerfile: Dockerfile
     ipc: host
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw

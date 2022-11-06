@@ -12,7 +12,7 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
     environment:
-      - VNC_PASSWORD=husarion
+      - PASSWORD=husarion
       - DISPLAY
 
   husarnet:
