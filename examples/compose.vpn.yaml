@@ -6,7 +6,7 @@
 
 services:
   remote-desktop:
-    image: donowak/remote-desktop:vpn
+    image: donowak/remote-desktop
     network_mode: service:husarnet
     ipc: host
     volumes:
