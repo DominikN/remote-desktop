@@ -1,0 +1,19 @@
+# Quick Start
+# $ xhost +
+# $ docker compose up -d
+# 
+# Go to: http://YOUR_HUSARNET_HOSTNAME:8080/vnc_auto.html
+# or
+# Go to: http://LOCAL_IP_ADDR:8080/vnc_auto.html
+
+services:
+  remote-desktop:
+    image: donowak/remote-desktop:vpn
+    ipc: host
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    ports:
+      - 8080:8080
+    environment:
+      - VNC_PASSWORD=husarion
+      - DISPLAY

@@ -1,13 +1,20 @@
+# Quick Start
+# $ xhost +
+# $ docker compose -f compose.vpn.yaml up -d
+# 
+# Go to: http://my-desktop:8080/vnc_auto.html
+
 services:
   remote-desktop:
-    build: .
+    image: donowak/remote-desktop:vpn
     network_mode: service:husarnet
+    ipc: host
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
-    ipc: host
     environment:
+      - VNC_PASSWORD=husarion
       - DISPLAY
-  
+
   husarnet:
     image: husarnet/husarnet:2.0.0
     volumes:

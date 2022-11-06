@@ -9,15 +9,6 @@ on:
 jobs:
   build_and_push:
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        include:
-          - dockerfile: vpn/Dockerfile
-            context: vpn/
-            docker-tag: vpn
-          - dockerfile: lan/Dockerfile
-            context: lan/
-            docker-tag: lan
 
     steps:
     - name: Checkout
@@ -41,10 +32,8 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-        context: ${{ matrix.context }}
-        file: ${{ matrix.dockerfile }}
         platforms: linux/amd64, linux/arm64
         push: true
-        tags: donowak/remote-desktop:${{ matrix.docker-tag }}
-        cache-from: type=registry,ref=donowak/remote-desktop:${{ matrix.docker-tag }} 
+        tags: donowak/remote-desktop:latest
+        cache-from: type=registry,ref=donowak/remote-desktop:latest
         cache-to: type=inline
