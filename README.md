@@ -2,12 +2,6 @@
 
 ## Quick start
 
-Make sure `DISPLAY` variable is set:
-
-```
-echo $DISPLAY
-```
-
 ```
 export PASSWORD="qwerty"
 ```

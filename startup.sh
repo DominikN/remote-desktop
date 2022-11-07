@@ -4,14 +4,15 @@ export VNC_SERVER_PORT=5901
 export NOVNC_PORT=8081
 
 if [[ -z "${DISPLAY}" ]]; then
-  export DISPLAY=$(cd /tmp/.X11-unix && for x in X*; do echo ":${x#X}"; break; done)
+    echo "No DISPLAY env set. Trying autodetection."
+    export DISPLAY=$(cd /tmp/.X11-unix && for x in X*; do echo ":${x#X}"; break; done)
 fi
 
 if [[ -z "${DISPLAY}" ]]; then
-    echo "You need to run a display server first"
+    echo "ERROR | You need to run a display server first"
     exit 1
 else
-    echo "DISPLAY=${DISPLAY}"
+    echo "SUCCESS | DISPLAY=${DISPLAY}"
 fi
 
 if [[ -z "${PASSWORD}" ]]; then
@@ -27,7 +28,8 @@ envsubst < /nginx.conf.template > /etc/nginx/conf.d/default.conf
 nohup x11vnc -rfbauth /root/.vnc/passwd -rfbport ${VNC_SERVER_PORT} -display ${DISPLAY} -loop > /dev/null 2>&1 &
 /usr/share/novnc/utils/launch.sh --listen ${NOVNC_PORT} --vnc localhost:${VNC_SERVER_PORT} > /dev/null 2>&1  &
 
-echo "visit http://ADDR:8080/vnc_auto.html"
+echo ""
+echo "visit http://IP_ADDR:8080/vnc_auto.html"
 
 # start nginx
 /usr/sbin/nginx -g 'daemon off;'
