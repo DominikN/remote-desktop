@@ -21,7 +21,4 @@ ENV PORT=8080
 
 EXPOSE ${PORT}
 
-RUN apt-get update -y && apt-get install -y \
-        x11-xserver-utils
-
 CMD [ "/startup.sh" ]

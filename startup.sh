@@ -4,16 +4,8 @@ export VNC_SERVER_PORT=5901
 export NOVNC_PORT=8081
 
 if [[ -z "${DISPLAY}" ]]; then
-    echo "No DISPLAY env set. Trying autodetection."
-    export DISPLAY=$(cd /tmp/.X11-unix && for x in X*; do echo ":${x#X}"; break; done)
-fi
-
-if [[ -z "${DISPLAY}" ]]; then
     echo "ERROR | You need to run a display server first"
     exit 1
-else
-    echo "SUCCESS | DISPLAY=${DISPLAY}"
-    xhost +
 fi
 
 if [[ -z "${PASSWORD}" ]]; then
