@@ -13,6 +13,7 @@ if [[ -z "${DISPLAY}" ]]; then
     exit 1
 else
     echo "SUCCESS | DISPLAY=${DISPLAY}"
+    xhost +
 fi
 
 if [[ -z "${PASSWORD}" ]]; then
