@@ -17,7 +17,7 @@ xhost +
 ```
 
 ```
-docker run \
+docker run -it \
 -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
 -p 8080:8080 \
 -e DISPLAY \
