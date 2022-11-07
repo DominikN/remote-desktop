@@ -1,5 +1,7 @@
 # remote-desktop
 
+NoVNC client + VNC server packed into a Docker image. Access your host's desktop over the network using a web browser.
+
 ## Quick start
 
 1. make sure that `DISPLAY` environment variable is set:
@@ -8,7 +10,7 @@
     echo $DISPLAY
     ```
 
-    > If the output is empty (eg. you are on remote SSH session), find all avaialable displays:
+    > If the output is empty (eg. you are on remote SSH session), find all available displays:
     > 
     > ```
     > echo $(cd /tmp/.X11-unix && for x in X*; do echo ":${x#X}"; break; done)
