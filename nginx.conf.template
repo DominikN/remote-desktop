@@ -7,7 +7,8 @@ server {
 
     location / {
         proxy_http_version 1.1;
-        proxy_pass http://localhost:${NOVNC_PORT}/vnc_auto.html;
+        # proxy_pass http://localhost:${NOVNC_PORT}/vnc_auto.html;
+        proxy_pass http://localhost:${NOVNC_PORT};
         proxy_set_header Upgrade $${just_cheating_envsubst}http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_read_timeout 61s;
